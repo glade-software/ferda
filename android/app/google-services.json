@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "591485769705",
+    "firebase_url": "https://ferda-5d9b2.firebaseio.com",
+    "project_id": "ferda-5d9b2",
+    "storage_bucket": "ferda-5d9b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591485769705:android:c8f047ba4b2d292d",
+        "android_client_info": {
+          "package_name": "app.ferda.ferda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591485769705-ep6c6o8mr1740ba4gcvr2ebu85lrmhpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoKkaYHz5RKsNpG5-X6FkJK0vTc881Jb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "591485769705-ep6c6o8mr1740ba4gcvr2ebu85lrmhpv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
