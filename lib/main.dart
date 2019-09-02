@@ -36,6 +36,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
+
+      //group page maybe?
+      initialRoute: '/invite',
+      routes: {
+        '/login': (ctx) => LoginForm(),
+        '/invite': (ctx) => Invite(),
+      },
+
       home: Scaffold(
         appBar: AppBar(
           title: Text(appTitle),
@@ -46,9 +54,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class AuthenticationSection extends StatelessWidget{
-
-// }
 
 //Login Form widget
 class LoginForm extends StatefulWidget{
@@ -65,6 +70,13 @@ class LoginFormState extends State<LoginForm>{
 
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _smsController = TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+
+
+  }
 
   String _message = '';
   String _verificationId;
@@ -136,6 +148,9 @@ class LoginFormState extends State<LoginForm>{
         (AuthCredential phoneAuthCredential) {
       _auth.signInWithCredential(phoneAuthCredential);
       setState(() {
+        //can we add view switch here?
+
+
         _message = 'Received phone auth credential: $phoneAuthCredential';
       });
     };
