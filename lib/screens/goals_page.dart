@@ -5,34 +5,56 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ferda/main.dart';
 
-class GoalsPage extends StatelessWidget{
+class GoalsPage extends StatefulWidget{
 
+
+
+  @override
+  _GoalsPageState createState() => _GoalsPageState();
+}
+
+class _GoalsPageState extends State<GoalsPage> {
+
+  @override
+  void initState(){
+    super.initState();
+
+    final myFuture = isSignedIn();
+
+    myFuture.then((status){
+      if(status== false)
+
+        Navigator.
+        pushReplacementNamed(context, '/login');
+    }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
 
     //I wonder if I can put logic here, as the widget is building? try
+    print('in goals build');
 
-    final myFuture = isSignedIn();
-
-    //with the way this is coded, the return Center block below actually executes first, before future thing is received and executed. 
-    myFuture.then((status){
-      if(status== false)
-        Navigator.push(
-          context, 
-          //I want to keep the main.dart app bar and title I think, just want to swap body? need to figure that out. 
-          MaterialPageRoute(
-            builder: (context) => Scaffold( body: RegisterForm())
-            
-          )
-        );
-    }
-    );
-        
+      
+    
     //placeholder text widget until implement this page
-    return Center(
-      child: Text("List of goals of the group displayed here."),
-    );
+
+    // actually, kinda weird to wrap this in scaffold, because when page first loads, it 
+
+    return Scaffold(
+        appBar: AppBar(
+          //Do we actually need to title each page? what is the standard practice for UI?
+          title: Text("Goals page title"),
+        ),
+        body: Center(
+          child: Text("List of goals of the group displayed here."),
+        )
+      );
+
+    // return Center(
+    //   child: Text("List of goals of the group displayed here."),
+    // );
   }
 
   Future<bool> isSignedIn() async{
@@ -53,5 +75,4 @@ class GoalsPage extends StatelessWidget{
 
     return false;
   }
-
 }

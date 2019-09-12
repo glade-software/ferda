@@ -52,58 +52,71 @@ class RegisterFormState extends State<RegisterForm>{
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          child: const Text('Test sign in with phone number'),
-          padding: const EdgeInsets.all(16),
-          alignment: Alignment.center,
+    print('in register build');
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Register")
+      ),
+
+      //the SingleChildScrollView fixed the overflow problem, but 
+      body: SingleChildScrollView(
+              child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: const Text('Test sign in with phone number'),
+              padding: const EdgeInsets.all(16),
+              alignment: Alignment.center,
+            ),
+            TextFormField(
+                controller: _phoneNumberController,
+                decoration:
+                    InputDecoration(labelText: 'Phone number (+x xxx-xxx-xxxx)'),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Phone number (+x xxx-xxx-xxxx)';
+                  }
+                  return null;
+                },
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              alignment: Alignment.center,
+              child: RaisedButton(
+                onPressed: () async {
+                  _verifyPhoneNumber();
+                },
+                child: const Text('Verify phone number'),
+              ),
+            ),
+            TextField(
+              controller: _smsController,
+              decoration: InputDecoration(labelText: 'Verification code'),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              alignment: Alignment.center,
+              child: RaisedButton(
+                onPressed: () async {
+                  _signInWithPhoneNumber();
+                },
+                child: const Text('Sign in with phone number'),
+              ),
+            ),
+
+            //This text is for debugging purposes, not particularly user firendlyu - shows _message as set by _verifyPhoneNumber method
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                _message,
+                style: TextStyle(color: Colors.red),
+              ),
+            )
+          ],
         ),
-        TextFormField(
-          controller: _phoneNumberController,
-          decoration:
-              InputDecoration(labelText: 'Phone number (+x xxx-xxx-xxxx)'),
-          validator: (String value) {
-            if (value.isEmpty) {
-              return 'Phone number (+x xxx-xxx-xxxx)';
-            }
-            return null;
-          },
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          alignment: Alignment.center,
-          child: RaisedButton(
-            onPressed: () async {
-              _verifyPhoneNumber();
-            },
-            child: const Text('Verify phone number'),
-          ),
-        ),
-        TextField(
-          controller: _smsController,
-          decoration: InputDecoration(labelText: 'Verification code'),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          alignment: Alignment.center,
-          child: RaisedButton(
-            onPressed: () async {
-              _signInWithPhoneNumber();
-            },
-            child: const Text('Sign in with phone number'),
-          ),
-        ),
-        Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            _message,
-            style: TextStyle(color: Colors.red),
-          ),
-        )
-      ],
+      ),
     );
   }
 

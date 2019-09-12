@@ -25,12 +25,9 @@ class MyApp extends StatelessWidget {
         '/goals': (ctx) => GoalsPage(),
       },
 
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
-        ),
-        body: GoalsPage(),
-      )
+      //previsous code here built the scaffold Appbar, but I moved that logic into the GoalsPage return method
+
+      home: GoalsPage()
     );
   }
 }
