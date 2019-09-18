@@ -6,7 +6,9 @@ import 'package:ferda/widgets/PromptedInputWidget.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-//TODO: put all the pages of the register flow in this file, to keep things simple now. one shared state.
+//TODO: put all the pages of the register flow in this file, to keep things simple now. How can I shared the methods / state between page widgets?
+
+//Realizing now that I need to learn a lot about state manaemgnet, how to pass between pages, etc. 
 
 //Login Form widget
 class RegisterForm extends StatefulWidget{
@@ -37,9 +39,12 @@ class RegisterFormState extends State<RegisterForm>{
   @override
   Widget build(BuildContext context) {
     
-    //How to handle routing between the subpages
+    //TODO How to handle routing between the subpages? want the ability to press back and return to prev page
+
+    //the way im doing now probably doesnt make sense. if this way, might as well not have separate class for Inputnumber
     return InputNumber();
   }
+
 
   // Example code of how to verify phone number
   void _verifyPhoneNumber() async {
@@ -114,9 +119,24 @@ class RegisterFormState extends State<RegisterForm>{
 }
 
 //InputNum, code and group should be fairly straightforward.
-//Do these need to be stateful?
-class InputNumber extends PromptedInputWidget{
+class InputNumber extends StatefulWidget{
+  @override
+  InputNumberState createState(){
+    return InputNumberState();
+  }
 
+}
+
+class InputNumberState extends State<InputNumber>{
+  @override
+  Widget build(BuildContext context){
+    return PromptedInputWidget(
+      titleText: 'Ferda Login',
+      promptText: 'Enter your phone number',
+      placeholderText: '(xxx) xxx-xxxx',
+      onButtonPress: null,
+    );
+  }
 }
 
 class InputCode extends PromptedInputWidget{
@@ -129,7 +149,7 @@ class InputGroup extends PromptedInputWidget{
 
 //TODO this page should let you select contacts from a list
 // so need to figure out how to ask user for contacts persmissions, and dispaly a list to them
-// Alternatively, could have user enter their friends number?
+// Alternatively, could have user enter their friends number(s)?
 class SelectContacts extends StatefulWidget{
 
   @override

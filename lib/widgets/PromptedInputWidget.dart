@@ -10,13 +10,14 @@ class PromptedInputWidget extends StatefulWidget{
   // title text
   // prompt text
   // placeholder text indicating data format
-  // function to cehck validity of input. 
-  // on button press method
+  // on button press method (check input is valid also)
 
-  PromptedInputWidget({this.titleText});
+  PromptedInputWidget({this.titleText,this.promptText,this.placeholderText,this.onButtonPress});
 
-  final String titleText;// how does this get to build method scope?
-
+  final String titleText;
+  final String promptText;
+  final String placeholderText;
+  final Function onButtonPress;
 
 
   @override
@@ -34,7 +35,31 @@ class _PromptedInputWidgetState extends State<PromptedInputWidget> {
         title: Text(widget.titleText),
       ),
       body: Center(
-        child: Text("List of goals of the group displayed here."),
+        child: Column(
+          children: <Widget>[
+            Text(widget.promptText),
+            TextFormField(
+                //do I need to add a custom controller as an instance variable?
+                // controller: _phoneNumberController,
+                decoration:
+                    InputDecoration(labelText: widget.placeholderText),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return widget.placeholderText;
+                  }
+                  return null;
+                },
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              alignment: Alignment.center,
+              child: RaisedButton(
+                onPressed: widget.onButtonPress,
+                child: const Text('Submit'),
+              ),
+            ),
+          ],
+        ),
       )
     );
 

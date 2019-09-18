@@ -24,6 +24,8 @@ class _GoalsPageState extends State<GoalsPage> {
     myFuture.then((status){
       if(status== false)
 
+        //its still showing back button
+        // TODO: is there a way to replace page, rather than "push"
         Navigator.
         pushReplacementNamed(context, '/login');
     }
@@ -60,7 +62,7 @@ class _GoalsPageState extends State<GoalsPage> {
   Future<bool> isSignedIn() async{
 
     //when I run with the below line, should make me go to register screen
-    // FirebaseAuth.instance.signOut();
+    FirebaseAuth.instance.signOut();
 
     //am I using await / future / async correctly? why are they needed, what would happen if removed.
 
