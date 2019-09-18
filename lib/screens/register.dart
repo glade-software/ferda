@@ -1,30 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ferda/widgets/PromptedInputWidget.dart';
 
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-//ref: https://pub.dev/packages/firebase_auth
-//I think this was just for email sign in - can remove?
-Future<FirebaseUser> _handleSignIn() async {
-  final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
-    accessToken: googleAuth.accessToken,
-    idToken: googleAuth.idToken,
-  );
-
-  final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
-
-  print("signed in " + user.displayName);
-  return user;
-}
+//TODO: put all the pages of the register flow in this file, to keep things simple now. one shared state.
 
 //Login Form widget
-
 class RegisterForm extends StatefulWidget{
 
   @override
@@ -52,72 +36,9 @@ class RegisterFormState extends State<RegisterForm>{
 
   @override
   Widget build(BuildContext context) {
-    print('in register build');
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Register")
-      ),
-
-      //the SingleChildScrollView fixed the overflow problem, but 
-      body: SingleChildScrollView(
-              child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: const Text('Test sign in with phone number'),
-              padding: const EdgeInsets.all(16),
-              alignment: Alignment.center,
-            ),
-            TextFormField(
-                controller: _phoneNumberController,
-                decoration:
-                    InputDecoration(labelText: 'Phone number (+x xxx-xxx-xxxx)'),
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'Phone number (+x xxx-xxx-xxxx)';
-                  }
-                  return null;
-                },
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              alignment: Alignment.center,
-              child: RaisedButton(
-                onPressed: () async {
-                  _verifyPhoneNumber();
-                },
-                child: const Text('Verify phone number'),
-              ),
-            ),
-            TextField(
-              controller: _smsController,
-              decoration: InputDecoration(labelText: 'Verification code'),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              alignment: Alignment.center,
-              child: RaisedButton(
-                onPressed: () async {
-                  _signInWithPhoneNumber();
-                },
-                child: const Text('Sign in with phone number'),
-              ),
-            ),
-
-            //This text is for debugging purposes, not particularly user firendlyu - shows _message as set by _verifyPhoneNumber method
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                _message,
-                style: TextStyle(color: Colors.red),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+    
+    //How to handle routing between the subpages
+    return InputNumber();
   }
 
   // Example code of how to verify phone number
@@ -190,4 +111,39 @@ class RegisterFormState extends State<RegisterForm>{
       }
     });
   }
+}
+
+//InputNum, code and group should be fairly straightforward.
+//Do these need to be stateful?
+class InputNumber extends PromptedInputWidget{
+
+}
+
+class InputCode extends PromptedInputWidget{
+
+}
+
+class InputGroup extends PromptedInputWidget{
+
+}
+
+//TODO this page should let you select contacts from a list
+// so need to figure out how to ask user for contacts persmissions, and dispaly a list to them
+// Alternatively, could have user enter their friends number?
+class SelectContacts extends StatefulWidget{
+
+  @override
+  _SelectContactsState createState() => _SelectContactsState();
+
+}
+
+class _SelectContactsState extends State<SelectContacts>{
+
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return null;
+  }
+
 }
