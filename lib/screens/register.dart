@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ferda/widgets/PromptedInputWidget.dart';
+import 'package:ferda/widgets/PromptedInput.dart';
 
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -130,7 +130,7 @@ class InputNumber extends StatefulWidget{
 class InputNumberState extends State<InputNumber>{
   @override
   Widget build(BuildContext context){
-    return PromptedInputWidget(
+    return PromptedInput(
       titleText: 'Ferda Login',
       promptText: 'Enter your phone number',
       placeholderText: '(xxx) xxx-xxxx',
@@ -139,11 +139,11 @@ class InputNumberState extends State<InputNumber>{
   }
 }
 
-class InputCode extends PromptedInputWidget{
+class InputCode extends PromptedInput{
 
 }
 
-class InputGroup extends PromptedInputWidget{
+class InputGroup extends PromptedInput{
 
 }
 

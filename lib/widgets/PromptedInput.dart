@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //to serve as a input mechanism for phone number, code, etc. 
-class PromptedInputWidget extends StatefulWidget{
+class PromptedInput extends StatefulWidget{
 
   //TODO: Things that need to be generalized:
 
@@ -12,7 +12,7 @@ class PromptedInputWidget extends StatefulWidget{
   // placeholder text indicating data format
   // on button press method (check input is valid also)
 
-  PromptedInputWidget({this.titleText,this.promptText,this.placeholderText,this.onButtonPress});
+  PromptedInput({this.titleText,this.promptText,this.placeholderText,this.onButtonPress});
 
   final String titleText;
   final String promptText;
@@ -21,10 +21,10 @@ class PromptedInputWidget extends StatefulWidget{
 
 
   @override
-  _PromptedInputWidgetState createState() => _PromptedInputWidgetState();
+  _PromptedInputState createState() => _PromptedInputState();
 }
 
-class _PromptedInputWidgetState extends State<PromptedInputWidget> {
+class _PromptedInputState extends State<PromptedInput> {
 
   @override
   Widget build(BuildContext context) {
