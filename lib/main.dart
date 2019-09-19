@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/goals_page.dart';
-import 'screens/register.dart';
+import 'pages/goals_page.dart';
+import 'pages/registration/inputphone_page.dart';
 
 
 void main() => runApp(MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       //group page maybe?
       initialRoute: '/goals', //to be mroe RESTful should this be something like '/group/[id]'?
       routes: {
-        '/login': (ctx) => RegisterForm(),
+        '/login': (ctx) => InputPhone(),
         '/goals': (ctx) => GoalsPage(),
       },
 
