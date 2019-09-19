@@ -4,28 +4,39 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ferda/widgets/PromptedInput.dart';
 
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
 
-//InputNum, code and group should be fairly straightforward.
-class InputPhone extends StatefulWidget{
+
+class InputPhonePage extends StatefulWidget{
   @override
-  InputPhoneState createState(){
-    return InputPhoneState();
+  InputPhonePageState createState(){
+    return InputPhonePageState();
   }
 
 }
 
-class InputPhoneState extends State<InputPhone>{
+class InputPhonePageState extends State<InputPhonePage>{
   @override
   Widget build(BuildContext context){
     return PromptedInput(
       titleText: 'Ferda Login',
       promptText: 'Enter your phone number',
       placeholderText: '(xxx) xxx-xxxx',
-      onButtonPress: null,
+
+      //TODO: to learn how this all work, try the following:
+      //
+      //on button press, navigate to next page
+      //pass whatever is in the text box
+      //display as title?
+
+      onButtonPress: (){
+        Navigator.pushNamed(context, '/registration/invite');
+      }
     );
   }
 }
+
+//this one was global
+// final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // String _message = '';
   // String _verificationId;
