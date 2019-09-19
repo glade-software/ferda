@@ -3,25 +3,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ferda/widgets/PromptedInput.dart';
 
-
-
-
-class InputVerificationCodePage extends StatefulWidget{
+class InputVerificationCodePage extends StatefulWidget {
   @override
-  InputVerificationCodePageState createState(){
+  InputVerificationCodePageState createState() {
     return InputVerificationCodePageState();
   }
-
 }
 
-class InputVerificationCodePageState extends State<InputVerificationCodePage>{
+class InputVerificationCodePageState extends State<InputVerificationCodePage> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return PromptedInput(
       titleText: 'Ferda Login',
       promptText: 'Enter your code',
       placeholderText: 'xxxxxx',
       onButtonPress: null,
+      submitText: 'Submit',
     );
   }
 }
@@ -29,8 +26,8 @@ class InputVerificationCodePageState extends State<InputVerificationCodePage>{
 //this one was global
 // final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // String _message = '';
-  // String _verificationId;
+// String _message = '';
+// String _verificationId;
 
 //   // Example code of how to verify phone number
 //   void _verifyPhoneNumber() async {
@@ -43,7 +40,6 @@ class InputVerificationCodePageState extends State<InputVerificationCodePage>{
 //       _auth.signInWithCredential(phoneAuthCredential);
 //       setState(() {
 //         //can we add view switch here?
-
 
 //         _message = 'Received phone auth credential: $phoneAuthCredential';
 //       });

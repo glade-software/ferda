@@ -3,43 +3,38 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ferda/widgets/PromptedInput.dart';
 
-
-
-
-class InputPhonePage extends StatefulWidget{
+class InputPhonePage extends StatefulWidget {
   @override
-  InputPhonePageState createState(){
+  InputPhonePageState createState() {
     return InputPhonePageState();
   }
-
 }
 
-class InputPhonePageState extends State<InputPhonePage>{
+class InputPhonePageState extends State<InputPhonePage> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return PromptedInput(
-      titleText: 'Ferda Login',
-      promptText: 'Enter your phone number',
-      placeholderText: '(xxx) xxx-xxxx',
-
-      //TODO: to learn how this all work, try the following:
-      //
-      //on button press, navigate to next page
-      //pass whatever is in the text box
-      //display as title?
-
-      onButtonPress: (){
-        Navigator.pushNamed(context, '/registration/invite');
-      }
-    );
+        titleText: 'We will not post this data',
+        promptText: 'Enter your phone number',
+        placeholderText: '(xxx) xxx-xxxx',
+        submitText: 'Submit',
+        hideAppBar: true,
+        //TODO: to learn how this all work, try the following:
+        //
+        //on button press, navigate to next page
+        //pass whatever is in the text box
+        //display as title?
+        onButtonPress: () {
+          Navigator.pushNamed(context, '/registration/invite');
+        });
   }
 }
 
 //this one was global
 // final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // String _message = '';
-  // String _verificationId;
+// String _message = '';
+// String _verificationId;
 
 //   // Example code of how to verify phone number
 //   void _verifyPhoneNumber() async {
@@ -52,7 +47,6 @@ class InputPhonePageState extends State<InputPhonePage>{
 //       _auth.signInWithCredential(phoneAuthCredential);
 //       setState(() {
 //         //can we add view switch here?
-
 
 //         _message = 'Received phone auth credential: $phoneAuthCredential';
 //       });
