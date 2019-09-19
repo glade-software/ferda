@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/goals_page.dart';
-import 'pages/registration/inputphone_page.dart';
+import 'pages/registration/input_phone_page.dart';
+//improt registeration widgets
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           '/registration/phone': (ctx) => InputPhonePage(),
           '/registration/group-name': (ctx) => InputGroupPage(),
           '/registration/verification': (ctx) => InputVerificationCodePage(),
-          '/registration/invite': (ctx) => InviteUsers(),
+          '/registration/invite': (ctx) => InviteUsersPage(),
           '/goals': (ctx) => GoalsPage(),
           '/goals/set': (ctx) => SetGoalPage(),
           '/goals/show': (ctx) => ShowGoalPage(),
