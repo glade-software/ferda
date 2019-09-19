@@ -8,9 +8,6 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 //TODO: put all the pages of the register flow in this file, to keep things simple now. How can I shared the methods / state between page widgets?
 
-//Realizing now that I need to learn a lot about state manaemgnet, how to pass between pages, etc. 
-
-//Login Form widget
 class RegisterForm extends StatefulWidget{
 
   @override
@@ -29,8 +26,6 @@ class RegisterFormState extends State<RegisterForm>{
   @override
   void initState(){
     super.initState();
-
-
   }
 
   String _message = '';
@@ -119,15 +114,15 @@ class RegisterFormState extends State<RegisterForm>{
 }
 
 //InputNum, code and group should be fairly straightforward.
-class InputNumber extends StatefulWidget{
+class InputPhone extends StatefulWidget{
   @override
-  InputNumberState createState(){
-    return InputNumberState();
+  InputPhoneState createState(){
+    return InputPhoneState();
   }
 
 }
 
-class InputNumberState extends State<InputNumber>{
+class InputPhoneState extends State<InputPhone>{
   @override
   Widget build(BuildContext context){
     return PromptedInput(
@@ -139,31 +134,3 @@ class InputNumberState extends State<InputNumber>{
   }
 }
 
-class InputCode extends PromptedInput{
-
-}
-
-class InputGroup extends PromptedInput{
-
-}
-
-//TODO this page should let you select contacts from a list
-// so need to figure out how to ask user for contacts persmissions, and dispaly a list to them
-// Alternatively, could have user enter their friends number(s)?
-class SelectContacts extends StatefulWidget{
-
-  @override
-  _SelectContactsState createState() => _SelectContactsState();
-
-}
-
-class _SelectContactsState extends State<SelectContacts>{
-
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
-  }
-
-}

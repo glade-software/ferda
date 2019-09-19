@@ -12,12 +12,14 @@ class PromptedInput extends StatefulWidget{
   // placeholder text indicating data format
   // on button press method (check input is valid also)
 
-  PromptedInput({this.titleText,this.promptText,this.placeholderText,this.onButtonPress});
+  PromptedInput({this.titleText,this.promptText,this.placeholderText,this.onButtonPress,this.submitText});
 
   final String titleText;
   final String promptText;
   final String placeholderText;
   final Function onButtonPress;
+  //TODO: inject validator
+  final String submitText;
 
 
   @override
@@ -55,7 +57,7 @@ class _PromptedInputState extends State<PromptedInput> {
               alignment: Alignment.center,
               child: RaisedButton(
                 onPressed: widget.onButtonPress,
-                child: const Text('Submit'),
+                child: Text(widget.submitText),
               ),
             ),
           ],
