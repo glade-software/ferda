@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
         title: appTitle,
-        //group page maybe?
-        initialRoute: '/goals',
-        home: ListGoalsPage(),
+        //setting initial route to input phone number page for testing purposes.
+        initialRoute: '/registration/phone',
+        home: InputPhonePage(),
         routes: {
           '/registration/phone': (ctx) => InputPhonePage(),
           '/registration/group-name': (ctx) => SetGroupNamePage(),

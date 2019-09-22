@@ -17,7 +17,8 @@ class PromptedInput extends StatefulWidget {
       this.placeholderText,
       this.onButtonPress,
       this.submitText,
-      this.hideAppBar});
+      this.hideAppBar, 
+      this.inputTextController});
 
   final String titleText;
   final String promptText;
@@ -25,6 +26,7 @@ class PromptedInput extends StatefulWidget {
   final String submitText;
   final Function onButtonPress;
   final bool hideAppBar;
+  final TextEditingController inputTextController;
   //TODO: inject validator
 
   @override
@@ -32,20 +34,22 @@ class PromptedInput extends StatefulWidget {
 }
 
 class _PromptedInputState extends State<PromptedInput> {
+
   @override
   Widget build(BuildContext context) {
-    final appBar =
-        widget.hideAppBar ? AppBar(title: Text(widget.titleText)) : null;
+    // final appBar =
+        // widget.hideAppBar ? AppBar(title: Text(widget.titleText)) : null;
     return Scaffold(
-        appBar: appBar,
+        // appBar: null,
         body: Center(
           child: Column(
             children: <Widget>[
               Text(widget.promptText),
               TextFormField(
                 //do I need to add a custom controller as an instance variable?
-                // controller: _phoneNumberController,
+                controller: widget.inputTextController,
                 decoration: InputDecoration(labelText: widget.placeholderText),
+                // TODO: replace with widget.validator
                 validator: (String value) {
                   if (value.isEmpty) {
                     return widget.placeholderText;

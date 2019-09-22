@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ferda/widgets/PromptedInput.dart';
+import 'package:ferda/pages/registration/input_phone_number_page.dart';
 
 class InputVerificationCodePage extends StatefulWidget {
   @override
@@ -13,9 +14,13 @@ class InputVerificationCodePage extends StatefulWidget {
 class InputVerificationCodePageState extends State<InputVerificationCodePage> {
   @override
   Widget build(BuildContext context) {
+
+    final ScreenArguments args = ModalRoute.of(context).settings.arguments;
+
     return PromptedInput(
+      //setting the title text here just to confirm the data is passign through
       titleText: 'Ferda Login',
-      promptText: 'Enter your code',
+      promptText: args.message,
       placeholderText: 'xxxxxx',
       onButtonPress: null,
       submitText: 'Submit',
