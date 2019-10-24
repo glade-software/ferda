@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: appTitle,
         //setting initial route to input phone number page for testing purposes.
-        initialRoute: '/registration/phone',
-        home: InputPhonePage(),
+        initialRoute: 'registration/phone',
+        // home: InputPhonePage(),
         routes: {
-          '/registration/phone': (ctx) => InputPhonePage(),
+          'registration/phone': (ctx) => InputPhonePage(),
           '/registration/group-name': (ctx) => SetGroupNamePage(),
           '/registration/verification': (ctx) => InputVerificationCodePage(),
           '/registration/invite': (ctx) => InviteContactsPage(),

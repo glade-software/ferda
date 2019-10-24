@@ -43,6 +43,8 @@ class _PromptedInputState extends State<PromptedInput> {
         // appBar: null,
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(widget.promptText),
               TextFormField(

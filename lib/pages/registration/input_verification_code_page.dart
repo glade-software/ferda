@@ -15,7 +15,9 @@ class InputVerificationCodePageState extends State<InputVerificationCodePage> {
   @override
   Widget build(BuildContext context) {
 
+    //args.message contains the phone number
     final ScreenArguments args = ModalRoute.of(context).settings.arguments;
+    final String phoneNumber = args.message;
 
     return PromptedInput(
       //setting the title text here just to confirm the data is passign through

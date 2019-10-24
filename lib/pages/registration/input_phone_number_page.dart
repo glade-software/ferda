@@ -29,13 +29,11 @@ class InputPhonePageState extends State<InputPhonePage> {
         placeholderText: '(xxx) xxx-xxxx',
         submitText: 'Submit',
         hideAppBar: true,
-        //TODO: refactor to be more pretty here..
         inputTextController: _inputTextController,
-        //TODO: to learn how this all work, try the following:
 
-        //on button press, navigate to next page
-        //pass whatever is in the text box
-        //display as title?
+
+        //ok, that 
+
         onButtonPress: () {
           Navigator.pushNamed(
             context, 
