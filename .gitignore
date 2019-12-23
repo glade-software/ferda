@@ -23,6 +23,7 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+pubspec.lock
 .flutter-plugins
 .packages
 .pub-cache/
@@ -62,6 +63,7 @@
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
 **/ios/ServiceDefinitions.json
+**ios/Flutter/flutter_export_environment.sh
 **/ios/Runner/GeneratedPluginRegistrant.*
 
 # Exceptions to above rules.
