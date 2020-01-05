@@ -46,6 +46,8 @@ class PromptedInput extends StatefulWidget {
 class _PromptedInputState extends State<PromptedInput> {
   final _formKey = GlobalKey<FormState>();
 
+  Function _onPressed;
+
   @override
   Widget build(BuildContext context) {
     // final appBar =
@@ -54,7 +56,18 @@ class _PromptedInputState extends State<PromptedInput> {
     // final inputTextController = TextEditingController();
     // inputTextController.addListener(widget.onTextChanged);
 
-    
+    // widget.inputTextController.addListener(
+    //    (){
+    //     //validate must return true if validator returns null.
+    //     if(_formKey.currentState.validate()){
+    //       //change button onPressed to widget.onButtonPress
+    //       setState((){_onPressed = widget.onButtonPress;});
+    //     } else {
+    //       //change onPressed back to null
+    //       setState((){_onPressed = null;});
+    //     }
+    //   }
+    // );
     
     return Scaffold(
         // appBar: null,
@@ -74,10 +87,12 @@ class _PromptedInputState extends State<PromptedInput> {
                     controller: widget.inputTextController,
                     decoration: InputDecoration(labelText: widget.placeholderText),
                     validator: widget.validator,
+                    // onChanged: widget.onTextChanged,
                     onChanged: (text){
-                      //run validator, if is valid, change button state
-                      if(_formKey.currentState.validate()){
-                        
+                      if(!_formKey.currentState.validate()){
+                        setState((){_onPressed = null;});
+                      } else{
+                        setState((){_onPressed = widget.onButtonPress;});
                       }
                     },
 
@@ -86,7 +101,8 @@ class _PromptedInputState extends State<PromptedInput> {
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     alignment: Alignment.center,
                     child: RaisedButton(
-                      onPressed: widget.onButtonPress,
+                      onPressed: _onPressed, // change to widget.onButtonPress if valid
+                      // onPressed: widget.onButtonPress, 
                       child: Text(widget.submitText),
                     ),
                   ),

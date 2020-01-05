@@ -31,21 +31,19 @@ class InputPhonePageState extends State<InputPhonePage> {
     return PromptedInput(
         titleText: 'We will not post this data',
         promptText: 'Enter your phone number',
-        placeholderText: '(xxx) xxx-xxxx',
+        placeholderText: '+1 (xxx) xxx-xxxx',
         submitText: 'Submit',
         hideAppBar: true,
         inputTextController: _inputTextController,
         //run validator of tet input changed - ca be handled in class
-        validator: (){
-          if(_inputTextController.text == null){
-            return false;
+        validator: (value){
+          if(value.isEmpty){
+            return "";
           } 
-          return true;
+          return null;
         },
-
-        onButtonPress: !validate ? null : (){
-
-          //in this function, need to check isInputValid bool somehow
+        //this function will only be applied if the input field is valid
+        onButtonPress: (){
           Navigator.pushNamed(
             context, 
             '/registration/verification',
