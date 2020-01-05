@@ -13,6 +13,7 @@ class ListGoalsPage extends StatefulWidget {
   }
 }
 
+
 class ListGoalsPageState extends State<ListGoalsPage> {
   // Homepage
   // if user is not signed in, "Did you get a link? If you did, go click it now."
