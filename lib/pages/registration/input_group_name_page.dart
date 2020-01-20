@@ -13,15 +13,33 @@ class SetGroupNamePage extends StatefulWidget {
 }
 
 class SetGroupNamePageState extends State<SetGroupNamePage> {
+
+  final TextEditingController _groupNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return PromptedInput(
       titleText: 'Choose a group name!',
       promptText: 'Name your crew',
       placeholderText: 'SauceSquad',
-      onButtonPress: null,
-      submitText: 'Submit',
       hideAppBar: true,
+      inputTextController: _groupNameController,
+      validator: (value){
+        //check length of input
+        if(value.isEmpty){
+          return "";
+        }
+        return null;
+      },
+      onButtonPress: (){
+        //TODO: add group name associcated with user to firebase
+
+        Navigator.pushNamed(
+            context,
+            '/registration/invite'
+        );
+
+      },
+      submitText: 'Submit',
     );
   }
 }

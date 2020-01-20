@@ -19,13 +19,16 @@ class InputVerificationCodePage extends StatefulWidget {
 }
 
 class InputVerificationCodePageState extends State<InputVerificationCodePage> {
+
+  final TextEditingController _smsCodeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
     //args.message contains the phone number
     final ScreenArguments args = ModalRoute.of(context).settings.arguments;
 
-    //pass phone number to the method that verfies phone number
+    //pass phone number to the method that verifies phone number
     //because this is async, will i have to wait until the code is sent to google services, etc before the widget is actually drawn?
     _verifyPhoneNumber(args.message);
 
@@ -33,8 +36,25 @@ class InputVerificationCodePageState extends State<InputVerificationCodePage> {
       //setting the title text here just to confirm the data is passign through
       titleText: 'Ferda Login',
       promptText: 'Enter your verification code',
+      hideAppBar: true,
+      inputTextController: _smsCodeController,
+      validator: (code){
+        if(code.isEmpty){
+          return "";
+        }
+        return null;
+      },
       placeholderText: 'xxxxxx',
-      onButtonPress: null,
+      onButtonPress: (){
+        //on button press, should run verification function, then in
+        //verif function, can move to next view (invite contacts)
+
+        //_verificationID contains the code.
+        _signInWithPhoneNumber(); //gets text from code controller. no return value
+
+        //how to check if logged in
+
+      },
       submitText: 'Submit',
     );
   }
@@ -80,8 +100,6 @@ class InputVerificationCodePageState extends State<InputVerificationCodePage> {
       _verificationId = verificationId;
     };
 
-    //Throws exeption when _phoneNumberController.text is empty
-    //well, phone num should have to be valid anyways.
     await _auth.verifyPhoneNumber(
         phoneNumber: inputtedNumber,
         timeout: const Duration(seconds: 5),
@@ -91,24 +109,35 @@ class InputVerificationCodePageState extends State<InputVerificationCodePage> {
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
 
-  // // Example code of how to sign in with phone.
-  // void _signInWithPhoneNumber() async {
-  //   final AuthCredential credential = PhoneAuthProvider.getCredential(
-  //     verificationId: _verificationId,
-  //     smsCode: _smsController.text,
-  //   );
-  //   final FirebaseUser user =
-  //       (await _auth.signInWithCredential(credential)).user;
-  //   final FirebaseUser currentUser = await _auth.currentUser();
-  //   assert(user.uid == currentUser.uid);
-  //   setState(() {
-  //     if (user != null) {
-  //       _message = 'Successfully signed in, uid: ' + user.uid;
-  //     } else {
-  //       _message = 'Sign in failed';
-  //     }
-  //   });
-  // }
+   // Example code of how to sign in with phone.
+   void _signInWithPhoneNumber() async {
+     final AuthCredential credential = PhoneAuthProvider.getCredential(
+       verificationId: _verificationId,
+       smsCode: _smsCodeController.text,
+     );
+     final FirebaseUser user =
+         (await _auth.signInWithCredential(credential)).user;
+     final FirebaseUser currentUser = await _auth.currentUser();
+     assert(user.uid == currentUser.uid);
+     setState(() {
+       if (user != null) {
+         _message = 'Successfully signed in, uid: ' + user.uid;
+         print('Successfully signed in, good to go');
+
+         //If the user has a group already (need to check firebase), then go to main screen
+         //If new user, go to group name page, then invite contacts, etc.
+
+         //TODO: implement the if statement described above, currently just assuming new user
+         Navigator.pushNamed(
+             context,
+             '/registration/group-name'
+         );
+
+       } else {
+         _message = 'Sign in failed';
+       }
+     });
+   }
 }
 
 

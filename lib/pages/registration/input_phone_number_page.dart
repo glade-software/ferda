@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ferda/widgets/PromptedInput.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+//final FirebaseAuth _auth = FirebaseAuth.instance;
 
 String _message = ''; //this was used for debugging in example, can likely remove. 
 String _verificationId;
@@ -24,7 +24,7 @@ class ScreenArguments {
 class InputPhonePageState extends State<InputPhonePage> {
 
   String testText = "";
-  final TextEditingController _inputTextController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class InputPhonePageState extends State<InputPhonePage> {
         placeholderText: '+1 (xxx) xxx-xxxx',
         submitText: 'Submit',
         hideAppBar: true,
-        inputTextController: _inputTextController,
+        inputTextController: _phoneNumberController,
         //run validator of tet input changed - ca be handled in class
         validator: (value){
           if(value.isEmpty){
@@ -47,7 +47,7 @@ class InputPhonePageState extends State<InputPhonePage> {
           Navigator.pushNamed(
             context, 
             '/registration/verification',
-            arguments: ScreenArguments(_inputTextController.text)
+            arguments: ScreenArguments(_phoneNumberController.text)
           );
         });
   }
